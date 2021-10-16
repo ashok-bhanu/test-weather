@@ -1,4 +1,5 @@
 {
     "chromeWebSecurity": false,
-    "reporter": "cypress-mochawesome-reporter"
+    "reporter": "cypress-mochawesome-reporter",
+    "baseUrl": "http://api.openweathermap.org"
 }
