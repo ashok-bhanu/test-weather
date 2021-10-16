@@ -1,4 +1,4 @@
-class HomePage{
+class HomePage {
 
     get searchBox() {
         return cy.get('input[class="search-input"]');
@@ -17,11 +17,10 @@ class HomePage{
     };
 
     searchCity(city) {
-        cy.log(Cypress.env('CITY'));
         this.searchBox
             .type(city)
             .should('have.value', city);
-        
+
         this.searchResult.eq(0)
             .click();
 
