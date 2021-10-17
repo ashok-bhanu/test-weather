@@ -11,10 +11,8 @@ class endpoints {
                 units: 'metric'
             }
         }).then((response) => {
-            cy.log(JSON.stringify(response.body))
-            cy.readFile("weatherDetailsFromUI.json").then(value => {
-                cy.log(response.body.main.temp, value.temp)
-            })
+            var {temp, temp_max, temp_min} = response.body.main;
+            cy.writeFile("weatherDetailsFromAPI.json", {temp, temp_max, temp_min})
         })
     }
 

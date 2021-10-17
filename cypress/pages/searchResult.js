@@ -1,11 +1,11 @@
-class DetailFirst {
+class ResultPage {
     get temp() {
         return cy.get('div[class="temp"]');
     }
 
     getCurrentTemp() {
         this.temp.eq(0).invoke('text').then(text => {
-            text = text.split("°")[0];
+            text = Number(text.split("°")[0]);
             cy.writeFile("weatherDetailsFromUI.json", {temp: text})
         })
     }
@@ -13,7 +13,7 @@ class DetailFirst {
     getMaxTemp() {
         this.temp.eq(1).invoke('text').then(text => {
             cy.readFile("weatherDetailsFromUI.json").then(value => {
-                value.temp_max = text.split("°")[0];
+                value.temp_max = Number(text.split("°")[0]);
                 cy.writeFile("weatherDetailsFromUI.json", value)
             })
         })
@@ -22,7 +22,7 @@ class DetailFirst {
     getMinTemp() {
         this.temp.eq(2).invoke('text').then(text => {
             cy.readFile("weatherDetailsFromUI.json").then(value => {
-                value.temp_min = text.split("°")[0];
+                value.temp_min = Number(text.split("°")[0]);
                 cy.writeFile("weatherDetailsFromUI.json", value)
             })
             cy.wait(5000);
@@ -30,4 +30,4 @@ class DetailFirst {
     }
 }
 
-export default new DetailFirst
+export default new ResultPage
